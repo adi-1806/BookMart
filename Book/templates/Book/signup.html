@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link  rel="stylesheet" href="{% static "Book/Signup.css" %}" />
+    <script> 
+        function validation(){
+            var pwd = document.form1.pwd.value;
+            var cpwd = document.form1.cpwd.value;
+            var ustype = document.form1.user_type.value;
+            if(pwd != cpwd){
+                alert('Passwords do not match');
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="form1" onsubmit="return validation()" method="POST">
+        {% csrf_token %}
+        <table> 
+            <tr> 
+                <td> SIGNUP</td>
+            </tr>
+            <tr> 
+                <td> UserName</td>
+                <td> Email</td>
+            </tr>
+            <tr>
+                <td> <input type="text" name="name"></td>
+                <td> <input type="email" name="email"></td>
+            </tr>
+            <tr> 
+                <td> Set Password</td>
+                <td> Confirm Password</td>
+            </tr>
+            <tr> 
+                <td> <input type="password" name="pwd"> </td>
+                <td> <input type="password" name="cpwd"> </td>
+            </tr>
+            <tr>
+                <td> 
+                    <select name="user_type">
+                        <option value="Select">Select</option>
+                        <option value="User">User</option>
+                        <option value="Bookstore">Bookstore</option>
+                        <option value="Library">Library</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" id="yes" class="yes" name="Yes" /></td>
+            </tr>
+            <tr>
+                <!-- <td><a href="homepage.html">Already a User?</a></td> -->
+            </tr> 
+        </table>
+    </form>
+</body>
+</html>
