@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="{% static "Book/homepage.css" %} " rel="stylesheet">
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="navi">
+            BOOKMART
+        </div>
+        <div class="box">
+            <div class="user">
+                <div class="block">
+                    <img src="profile.jpg" height="75px">
+                    User 
+                    <br>
+                    <br> Individual will be able to buy and sell Books without going to Bookstores or Libraries.
+                    You can rent books for a certain period of time. 
+                    <br> 
+                    <a href="{% url 'userlogin' %}">
+                        <input type="button" name="user" value="User"/>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="library">
+                <div class="block">
+                Library
+                    <br> You can list and manage your books for sale or rent.
+                    <br> 
+                    <a href="{% url 'librarylogin' %}">
+                        <input type="button" name="library" value="Library"/>
+                    </a>
+                    </div>
+            </div>
+
+            <div class="bookstore">
+                <div class="block">
+                    Bookstore
+                    <br> Owner able to sell or give rent books to users directly from library.
+                    <br> Through this you can reach out to larger audience.
+                    <br> 
+                    <a href="{% url 'bookstorelogin' %}">
+                        <input type="button" name="bookstore" value="Bookstore"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer"> 
+            <div class="title">
+                ABOUT US
+            </div>
+            Main objective of "BookMart" is to be able to access the Books in particular region.
+            <br> Developed by,
+            <br> P. Adithya Vardhan 
+            <br> Rishitha
+            <br> K. Vinay kumar
+            <br> G. Vishal
+            <br> Under the guidance of,
+            <br> K. Praveen Kumar
+        </div>
+
+        <div></div>
+    </form>
+</body>
+</html>

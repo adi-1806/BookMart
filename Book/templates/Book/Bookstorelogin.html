@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="{% static "Book/Login.css" %}" rel="stylesheet">
+
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <main class="box">
+        <table>
+            <tr> 
+                <td class="title"> LOGIN PAGE</td> 
+            </tr>
+            <tr>
+                <td class="Label"> Username </td>
+            </tr>
+            <tr>
+                <td><input type="text" name="username"></input>
+            </tr>
+            <tr>
+                <td class="Label"> Password</td>
+            </tr> 
+            <tr> 
+                <td> <input type="password" name="pwd"></td>
+            </tr>
+            <tr>
+                {% for msg in messages %}
+                {{msg}}
+                {% endfor %}
+                <td> <button>login</button></td>
+            </tr>
+            <tr>
+                <!-- <td> <a href="home.html">New User?</a> -->
+            </tr>
+        </table>
+        </main>
+    </form>
+</body>
+</html>

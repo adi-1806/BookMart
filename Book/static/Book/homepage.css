@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navi{
+    height: 50px;
+    background-color: #92bf8f;
+    text-align: center;
+    letter-spacing: 10px;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight:500;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding-top: 20px;
+}
+.box{
+    display: flex;
+    align-items: center;
+    justify-content:  space-between;
+    background-color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.user{
+    margin-left: 50px;
+    margin-right: 30px;
+    
+}
+.user .block{
+    padding:40px;
+    padding-top:20px;
+    height: 300px;
+    width:200px;
+    border-radius: 10px;
+    border-color: aqua;
+    background-color: azure;
+
+}
+.bookstore{
+    margin-right: 50px;
+    margin-left: 30px;
+}
+.bookstore .block{
+    padding:40px;
+    height:300px;
+    width:200px;
+    border-radius: 10px;
+    border-color: aqua;
+    background-color: azure;
+}
+.library .block{
+    padding:40px;
+    height:300px;
+    width:200px;
+    border-radius: 10px;
+    border-color: aqua;
+    background-color: azure;
+    
+
+}
+.footer{
+    text-align: center;
+    background-color: grey;
+    height:500px;
+}
+.user button{
+    padding:10px;
+    background-color: aqua;
+    border-color: aliceblue;
+    border-radius: 7px;
+    margin-top: 30px;
+}
+.library button{
+    padding:10px;
+    background-color: aqua;
+    border-color: aliceblue;
+    border-radius: 7px;
+    margin-top: 150px;
+}
+.bookstore button{
+    padding:10px;
+    background-color: aqua;
+    border-color: aliceblue;
+    border-radius: 7px;
+    margin-top: 90px;
+}
