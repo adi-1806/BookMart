@@ -10,43 +10,44 @@
 </head>
 <body>
     <form method="POST">
-        {% crsf_token %}
-    <div class="navi">
-        BOOKMART
-        <div class="navibar">
-            <li class="history"> <a href="">History</a></li>
-            <li class="profile"> <a href=""> Profile</a></li>
-        </div>    
-    </div>
-    <div class="box">
-        <div class="purchase">
-            <div class="block">
-                For Purchasing 
-                <br> <button> 
-                    View
-                </button>
-            </div>
+        {% csrf_token %}
+        <div class="navi">
+            BOOKMART
+            <div class="navibar">
+                <li class="history"> <a href="">History</a></li>
+                <li class="profile"> <a href=""> Profile</a></li>
+            </div>    
         </div>
+        <div class="box">
+            <div class="purchase">
+                <div class="block">
+                    For Purchasing 
+                    <br> <button> 
+                        View
+                    </button>
+                </div>
+            </div>
 
-        <div class="rent">
-            <div class="block">
-                For Renting
-                <br> <button>
-                    View
-                </button>
+            <div class="rent">
+                <div class="block">
+                    For Renting
+                    <br> <button>
+                        View
+                    </button>
+                </div>
+            </div>
+            <div class="sell">
+                <div class="block">
+                    For Selling
+                    <br> 
+                    <br> 
+                    <br> <button>
+                        View
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="sell">
-            <div class="block">
-                For Selling
-                <br> 
-                <br> 
-                <br> <button>
-                    View
-                </button>
-            </div>
-        </div>
-    </div>
+    </form>
     <div class="footer"> 
         <div class="title">
             ABOUT US
@@ -60,6 +61,6 @@
         <br> Under the guidance of,
         <br> K. Praveen Kumar
     </div>
-</form>
+
 </body>
 </html>

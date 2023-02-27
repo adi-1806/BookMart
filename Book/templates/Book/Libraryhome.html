@@ -9,23 +9,25 @@
     <link href="{% static 'Book/librarianhome-style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <form>
-    <div class="navi">
-        BOOKMART
-        <div class="history"><button type="button">History</button></div>
-        <div class="logout"><button type="button">Logout</button></div>
-    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="navi">
+            BOOKMART
+            <div class="history"><button type="button">History</button></div>
+            <div class="logout"><button type="button">Logout</button></div>
+        </div>
 
-    <div class="options">
-        <div class="librarian-books">
-            <div class="box-1">
-                <button type="button" onclick="location.href='uploadbook.html'">Upload a book</button>
-            </div>
-            <div class="box-2">
-                <button type="button" onclick="location.href='librarian-uploadedbooks.html'">Uploaded books</button>
+        <div class="options">
+            <div class="librarian-books">
+                <div class="box-1">
+                    <button type="button" onclick="location.href='Bookupload'">Upload a book</button>
+                </div>
+                <div class="box-2">
+                    <button type="button" onclick="location.href='librarian-uploadedbooks.html'">Uploaded books</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <div class="footer"> 
         <div class="title">
             ABOUT US
@@ -40,6 +42,6 @@
         <br> K. Praveen Kumar
     </div>
 
-</form>
+
 </body>
 </html>

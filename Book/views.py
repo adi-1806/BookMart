@@ -68,6 +68,13 @@ class SignUp(View):
     def get(self, request):
         return render(request, "Book/signup.html")
     
+class BookUpload(View):
+    def post(self, request):
+        pass
+
+    def get(self, request):
+        return render(request, "Book/BookUpload.html")
+
 #--------------------------------------------------------
 
 class UserLogin(View):
