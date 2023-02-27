@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Upload a Book</title> 
-    <link href="{% static 'User/BookUpload.css' %}" rel="stylesheet">
+    <link href="{% static 'Book/BookUpload.css' %}" rel="stylesheet">
 </head>
 <body>
+    <form method="POST">
+        {% crsf_token %}
     <main class="box">
     <table>
         <tr> 
@@ -19,24 +21,24 @@
             <td class="Label"> Author </td>
         </tr>
         <tr> 
-            <td><input type="text" name="Bkname"></td>
-            <td> <input type="text" name="Author"></td> 
+            <td><input type="text" name="Bkname" class="inputbox"></td>
+            <td> <input type="text" name="Author" class="inputbox"></td> 
         </tr> 
         <tr> 
             <td class="Label"> Edition</td>
             <td class="Label"> Price</td>
         </tr>
         <tr>
-            <td> <input type="text" name="edition"></td>
-            <td> <input type="number" name="price"></td>
+            <td> <input type="text" name="edition" class="inputbox"></td>
+            <td> <input type="number" name="price" class="inputbox"></td>
         </tr>
         <tr> 
             <td class="Label"> Publications</td>
             <td class="Label"> Quantity</td>
         </tr>
         <tr>
-            <td><input type="text" name="publications"></td>
-            <td> <input type="number" name="quantity"></td> 
+            <td><input type="text" name="publications" class="inputbox"></td>
+            <td> <input type="number" name="quantity" class="inputbox"></td> 
         </tr>
         <tr>
             <td class="Label"> Available for?</td>
@@ -64,5 +66,6 @@
         </tr>
     </table>
     </main>
+    </form>
 </body>
 </html>
