@@ -24,7 +24,7 @@
             <button type="button" ><a href="#login" style="text-decoration: none;" class="abut">Login</a></button>
         </div>
 
-            <img src={ %static 'images/bookstore-icon.png' %}>
+            <img src="{ % static 'Book/images/bookstore-icon.png' %}">
 
         </div>
             <div class="availablebooks">
@@ -33,19 +33,19 @@
 
             <div class="fromindividual">
             <div class="booksfrom">
-                <img src="./bookstore-icon.png"><br>
+                <img src="{% static 'Book/images/bookstore-icon.png' %}"><br>
                 <button >From Individual</button>
             </div>
         </div>
         <div class="fromlibrarian">
             <div class="booksfrom">
-                <img src="./bookstore-icon.png"><br>
+                <img src="{% static 'Book/images/bookstore-icon.png' %}"><br>
                 <button >From Librarian</button>
             </div>
         </div>
         <div class="fromowner">
             <div class="booksfrom">
-                <img src="./bookstore-icon.png"><br>
+                <img src="{% static 'Book/images/bookstore-icon.png' %}"><br>
                 <button >From Bookstore</button>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="box">
             <div class="user">
                 <div class="block">
-                    <img src="profile.jpg" height="75px">
+                    <img src="{% static 'Book/images/user-single-icon.png' %}" height="75px">
                     User 
                     <br>
                     <br>
@@ -70,7 +70,7 @@
 
             <div class="library">
                 <div class="block">
-                    <img src="profile.jpg" height="75px">
+                    <img src="{% static 'Book/images/library-building-icon.png' %}" height="75px">
                 Library
                     <br> You can list and manage your books for sale or rent.
                     <br> <a href="{% url 'librarylogin' %}">
@@ -81,8 +81,8 @@
 
             <div class="bookstore">
                 <div class="block">
-                    <img src="profile.jpg" height="75px">
-                    Bookstore
+                    <img src="{% static 'Book/images/Bookstore.jpeg' %}" height="75px">
+                    <div>Bookstore</div>
                     <br> Owner able to sell or give rent books to users directly from library.
                     <br> Through this you can reach out to larger audience.
                     <br> <a href="{% url 'bookstorelogin' %}">
