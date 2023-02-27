@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect,redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Library, Bookstore, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
+from .models import Library, Bookstore, Books_Library, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
 from django.contrib.auth.decorators import login_required
 
 
@@ -70,13 +70,44 @@ class SignUp(View):
     
 class BookUpload(View):
     def post(self, request):
-        pass
+        bookname = request.POST['Bkname']
+        author = request.POST['Author']
+        edition = request.POST['edition']
+        price = request.POST['price']
+        publications = request.POST['publications']
+        quantity = request.POST['quantity']
+        purpose = request.POST['sale']
+        ownertype = request.POST['ownertype']
+
+        # if ownertype=="User":
+        #     tablename = "Books_User"
+        #     urlname = 'UserHome'
+        # elif ownertype=="Bookstore":
+        #     tablename = "Books_Store"
+        #     urlname = 'LibraryHome'
+        # elif ownertype == "Library":
+        #     tablename = "Books_Library"
+        #     urlname = 'BookstoreHome' {{tablename}} {{urlname}}
+
+        details = Books_Library(
+            name = bookname,
+            author = author,
+            publications= publications,
+            edition = edition,
+            price = price,
+            quantity = quantity,
+            purpose = purpose,
+            book_owner = username
+        )
+        details.save()
+
+        return redirect('LibraryHome')
 
     def get(self, request):
         return render(request, "Book/BookUpload.html")
 
 #--------------------------------------------------------
-
+username = ''
 class UserLogin(View):
     def post(self, request):
         username=request.POST['username']
