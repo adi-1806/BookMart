@@ -1,0 +1,31 @@
+*{
+    margin:0;
+    padding:0;
+}
+.navi{
+    height: 50px;
+    background-color: #92bf8f;
+    text-align: center;
+    letter-spacing: 10px;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight:500;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding-top: 20px;
+    display: flex;
+}
+.navi .history button {
+    margin-left: 800px;
+}
+.navi .logout button {
+    margin-left: 100px;
+}
+.librarian-books {
+    display: flex;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+}
+.box-1 {
+    background-color: #92bf8f;
+}
