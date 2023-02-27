@@ -22,25 +22,26 @@
 <body>
     <form name="form1" onsubmit="return validation()" method="POST">
         {% csrf_token %}
+        <div class="box">
         <table> 
             <tr> 
-                <td> SIGNUP</td>
+                <td class="title" colspan="2"> SIGNUP </td>
             </tr>
             <tr> 
-                <td> UserName</td>
-                <td> Email</td>
+                <td class="Label"> UserName</td>
+                <td class="Label"> Email</td>
             </tr>
             <tr>
-                <td> <input type="text" name="name"></td>
-                <td> <input type="email" name="email"></td>
+                <td> <input type="text" name="name" class="inputbox"></td>
+                <td> <input type="email" name="email" class="inputbox"></td>
             </tr>
             <tr> 
-                <td> Set Password</td>
-                <td> Confirm Password</td>
+                <td class="Label"> Set Password</td>
+                <td class="Label"> Confirm Password</td>
             </tr>
             <tr> 
-                <td> <input type="password" name="pwd"> </td>
-                <td> <input type="password" name="cpwd"> </td>
+                <td> <input type="password" name="pwd" class="inputbox"> </td>
+                <td> <input type="password" name="cpwd" class="inputbox"> </td>
             </tr>
             <tr>
                 <td> 
@@ -59,6 +60,7 @@
                 <!-- <td><a href="homepage.html">Already a User?</a></td> -->
             </tr> 
         </table>
+        </div>
     </form>
 </body>
 </html>

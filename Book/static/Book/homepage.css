@@ -13,6 +13,12 @@
     font-family:Georgia, 'Times New Roman', Times, serif;
     padding-top: 20px;
 }
+
+.abut{
+    text-decoration: none;
+    padding: 20px;
+}
+
 .box{
     display: flex;
     align-items: center;
@@ -104,7 +110,6 @@
 }
 .about button {
     margin: 100px;
-    padding: 20px;
     width: 100px;
     border-color: #92bf8f;
     background-color: transparent;

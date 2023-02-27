@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Upload a Book</title> 
+    <link href="{% static 'User/BookUpload.css' %}" rel="stylesheet">
+</head>
+<body>
+    <main class="box">
+    <table>
+        <tr> 
+            <td class="title"> UPLOAD A BOOK</td>
+        </tr>
+        <tr> 
+            <td class="Label"> Book Name </td>
+            <td class="Label"> Author </td>
+        </tr>
+        <tr> 
+            <td><input type="text" name="Bkname"></td>
+            <td> <input type="text" name="Author"></td> 
+        </tr> 
+        <tr> 
+            <td class="Label"> Edition</td>
+            <td class="Label"> Price</td>
+        </tr>
+        <tr>
+            <td> <input type="text" name="edition"></td>
+            <td> <input type="number" name="price"></td>
+        </tr>
+        <tr> 
+            <td class="Label"> Publications</td>
+            <td class="Label"> Quantity</td>
+        </tr>
+        <tr>
+            <td><input type="text" name="publications"></td>
+            <td> <input type="number" name="quantity"></td> 
+        </tr>
+        <tr>
+            <td class="Label"> Available for?</td>
+            <td class="Label">Owner Type</td> 
+        </tr>
+        <tr>
+            <td> 
+                <select name="sale">
+                    <option value="Select"> Select</option>
+                    <option value="Rent"> Rent</option>
+                    <option value="Sale"> Sale</option>
+                </select> 
+            </td>
+            <td>
+                <select name="ownertype">
+                    <option value="Select">Select</option>
+                    <option value="User">User</option>
+                    <option value="Bookstore">Bookstore</option>
+                    <option value="Library">Library</option>  
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td> <input type="submit"></td>
+        </tr>
+    </table>
+    </main>
+</body>
+</html>
