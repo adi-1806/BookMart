@@ -9,7 +9,8 @@
     <link href="{% static 'Book/bookstorehome-style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <form>
+    <form method="POST">
+        {% crsf_token %}
     <div class="navi">
         BOOKMART
         <div class="history"><button type="button">History</button></div>
