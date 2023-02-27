@@ -1,0 +1,41 @@
+.inputbox{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    outline: none;
+    padding: 10px 0;
+    width: 100%;
+}
+.box{
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+    margin: auto auto;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.Bg{
+    background-image: url(books.jpg);
+    background-repeat: no-repeat;
+    background-position: fill;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+.Label{
+color: white;
+font-size: 15px;
+}
+.title{
+text-align: center;
+letter-spacing: 2px;
+font-weight: bold;
+color: white;
+}
