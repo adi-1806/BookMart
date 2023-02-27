@@ -26,34 +26,11 @@
     margin-right: 0;
     justify-content: center;
 }
-.box-1 button {
+.box-1 {
     background-color: #92bf8f;
-    width: 300px;
-    height: 200px;
-    border: none;
-    margin-top: 30px;
-    margin-right: 10px;
-    border-radius: 20px;
-    color: aliceblue;
-    font-size: larger;
-}
-.box-2 button {
-    background-color: #92bf8f;
-    width: 300px;
-    height: 200px;
-    border: none;
-    margin-top: 30px;
-    border-radius: 20px;
-    color: aliceblue;
-    font-size: larger;
-}
-button:hover {
-    background-color: #006449;
 }
 .footer{
     text-align: center;
     background-color: grey;
     height:500px;
-    margin-top: 50px;
-    padding-top: 40px;
 }
