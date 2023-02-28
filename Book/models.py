@@ -134,7 +134,8 @@ class Books_User(models.Model):
     price=models.IntegerField( null=True)
     quantity = models.IntegerField(null=True)
     purpose = models.CharField(max_length=20, null=True)
-    book_owner= models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
+
 
 
 
@@ -146,7 +147,8 @@ class Books_Store(models.Model):
     price=models.IntegerField( null=True)
     quantity = models.IntegerField(null=True)
     purpose = models.CharField(max_length=20, null=True)
-    book_owner= models.ForeignKey(Bookstore, on_delete=models.CASCADE, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
+
 
     def __str__(self):
         return f"{self.name}"
@@ -160,7 +162,7 @@ class Books_Library(models.Model):
     price=models.IntegerField (null=True)
     quantity = models.IntegerField(null=True)
     purpose = models.CharField(max_length=20, null=True)
-    book_owner= models.ForeignKey(Library, on_delete=models.CASCADE, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return f"{self.name}"
