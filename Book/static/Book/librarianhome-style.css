@@ -3,25 +3,30 @@
     padding:0;
 }
 .navi{
-    height: 50px;
-    background-color: #92bf8f;
     display: flex;
+    background-color: #006449;
 }
+
 .logo {
-    text-align: center;
+    text-align: left;
     letter-spacing: 10px;
-    border-radius: 5px;
     font-size: 30px;
     font-weight:500;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    padding-top: 20px;
+    padding-top: 10px;
+    color:beige;
+    flex-basis:80%; 
 }
 
-
+.history {
+    flex-basis: 10%;
+}
+.logout {
+    flex-basis: 10%;
+    
+}
 .librarian-books {
     display: flex;
-    margin-left: 0;
-    margin-right: 0;
     justify-content: center;
 }
 .box-1 button {
