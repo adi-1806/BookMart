@@ -11,21 +11,21 @@
 <body>
     <form method="POST">
         {% csrf_token %}
-    <div class="navi">
-        BOOKMART
-        <div class="history"><button type="button">History</button></div>
-        <div class="logout"><button type="button">Logout</button></div>
-    </div>
+        <div class="navi">
+            <div class="logo"><h1> Bookmart</h1></div>
+            <button type='button' onclick="">History</button>
+            <button type='button' onclick="location.href='homepage.html'">Logout</button>
+            <button type='button' onclick="">Profile</button>
+        </div>
     <div class="options">
         <div class="librarian-books">
-            <div class="box-1">
-                <button type="button" onclick="location.href='uploadbook.html'">Upload a book</button>
-            </div>
-            <div class="box-2">
-                <button type="button" onclick="location.href='librarian-uploadedbooks.html'">Uploaded books</button>
-            </div>
+            <div class="box-1"><button type="button" onclick="location.href='uploadbook.html'">Upload a book</button></div>
+            <div class="box-1"><button type="button" onclick="location.href='librarian-uploadedbooks.html'">Uploaded books</button></div>
+            <div class="box-1"><button type="button" onclick="location.href='librarian-rent-given-books.html'">Rent given books</button>
+            <div class="box-1"><button type="button" onclick="location.href='librarian-rent-given-books.html'">Purchased books</button></div>
         </div>
     </div>
+    
     <div class="footer"> 
         <div class="title">
             ABOUT US

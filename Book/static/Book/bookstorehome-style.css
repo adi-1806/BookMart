@@ -2,35 +2,55 @@
     margin:0;
     padding:0;
 }
+
 .navi{
-    height: 50px;
     background-color: #92bf8f;
+    overflow: hidden;
     text-align: center;
-    letter-spacing: 10px;
-    border-radius: 5px;
-    font-size: 30px;
-    font-weight:500;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    padding-top: 20px;
     display: flex;
 }
-.navi .history button {
-    margin-left: 800px;
+.navi h1 {
+    text-align: left;
+    letter-spacing: 10px;
+    font-weight:500;
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+    padding: 5px; 
 }
-.navi .logout button {
-    margin-left: 100px;
+.logo {
+    flex-grow: 100;
+}
+.navi button {
+    float: right;
+    color: black;
+    border: transparent;
+    flex-basis: 5%;
+}
+.navi button:hover {
+    background-color: #006449;
+    color: beige;
 }
 .librarian-books {
     display: flex;
-    margin-left: 0;
-    margin-right: 0;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
 }
-.box-1 {
-    background-color: #92bf8f;
+.box-1 button {
+    border: transparent;
+    background-color: #8360c3; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #8360c3, #2ebf91);
+    height: 100px;
+    width: 300px;
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+.librarian-books button:hover {
+   color: beige;
+   font-size: large;
 }
 .footer{
     text-align: center;
     background-color: grey;
-    height:500px;
+    height:200px;
 }
