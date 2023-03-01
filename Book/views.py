@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect,redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Library, Bookstore, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
+from .models import Library, Bookstore, Books_Library, Books_Store,Books_User, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
 from django.contrib.auth.decorators import login_required
 
 
@@ -30,9 +30,10 @@ class ProjectHome(View):
         return render(request, "Book/homepage.html")
 
 def logoutUser(request):
+    del request.session['uname']  
     logout(request)
     #messages.info(request, 'Logout successful')
-    return redirect('login')
+    return render(request, 'Book/homepage.html')
 
 class SignUp(View):
     def post(self, request):
@@ -68,6 +69,77 @@ class SignUp(View):
     def get(self, request):
         return render(request, "Book/signup.html")
     
+class BookUpload(View):
+    def post(self, request):
+        username=''
+        print('welcome')
+        if('uname' in request.session):
+            username=request.session['uname'] 
+        
+        bookname = request.POST['Bkname']
+        author = request.POST['Author']
+        edition = request.POST['edition']
+        price = request.POST['price']
+        publications = request.POST['publications']
+        quantity = request.POST['quantity']
+        purpose = request.POST['sale']
+        ownertype = request.POST['ownertype']
+
+        print(bookname)
+        print(ownertype)
+        print(username)
+
+        if ownertype=="User":
+            details = Books_User(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+
+            return redirect('UserHome')
+        
+        elif ownertype=="Bookstore":
+            details = Books_Store(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+
+            return redirect('BookstoreHome')
+        
+        elif ownertype == "Library":
+            print(username)   
+            print("hii") 
+            details = Books_Library(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+            return render(request,'Book/LibraryHome.html')
+    def get(self, request):
+        username=''
+        if('uname' in request.session):
+            username=request.session['uname']
+        return render(request, "Book/BookUpload.html",{'uname':username})
+
 #--------------------------------------------------------
 
 class UserLogin(View):
@@ -81,6 +153,7 @@ class UserLogin(View):
             user= authenticate(request, username=username, password=password)
 
             if user is not None:
+                request.session['uname']=username
                 login(request, user)
                 return redirect('userhome')
             else:
@@ -110,6 +183,7 @@ class BookstoreLogin(View):
             user= authenticate(request, username=username, password=password)
 
             if user is not None:
+                request.session['uname']=username
                 login(request, user)
                 return redirect('bookstorehome')
             else:
@@ -139,6 +213,7 @@ class LibraryLogin(View):
             user= authenticate(request, username=username, password=password)
 
             if user is not None:
+                request.session['uname']=username
                 login(request, user)
                 return redirect('libraryhome')
             else:

@@ -122,3 +122,47 @@ class CustomerProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.role == "CUSTOMER":
         CustomerProfile.objects.create(user=instance)
+
+
+#------------------------------------
+
+class Books_User(models.Model):
+    name=models.CharField(max_length=100, null=True)
+    author=models.CharField(max_length=50, null=True)
+    publications=models.CharField(max_length=50, null=True)
+    edition=models.CharField(max_length=10, null=True)
+    price=models.IntegerField( null=True)
+    quantity = models.IntegerField(null=True)
+    purpose = models.CharField(max_length=20, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
+
+
+
+
+class Books_Store(models.Model):
+    name=models.CharField(max_length=100, null=True)
+    author=models.CharField(max_length=50, null=True)
+    publications=models.CharField(max_length=50, null=True)
+    edition=models.CharField(max_length=10, null=True)
+    price=models.IntegerField( null=True)
+    quantity = models.IntegerField(null=True)
+    purpose = models.CharField(max_length=20, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
+
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Books_Library(models.Model):
+    name=models.CharField(max_length=100, null=True)
+    author=models.CharField(max_length=50, null=True)
+    publications=models.CharField(max_length=50, null=True)
+    edition=models.CharField(max_length=10, null=True)
+    price=models.IntegerField (null=True)
+    quantity = models.IntegerField(null=True)
+    purpose = models.CharField(max_length=20, null=True)
+    book_owner= models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return f"{self.name}"
