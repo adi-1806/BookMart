@@ -12,19 +12,39 @@
     <form method="POST">
         {% csrf_token %}
         <div class="navi">
-            <div class="logo"><h1> Bookmart</h1></div>
-            <button type='button' onclick="">History</button>
-            <button type='button' onclick="location.href='homepage.html'">Logout</button>
-            <button type='button' onclick="">Profile</button>
+            BOOKMART
+            <div class="navibar">
+                <li class="history"> <a href="">History</a></li>
+                <li class="profile"> <a href=""> Profile</a></li>
+            </div>    
         </div>
-        <div class="options">
-            <div class="librarian-books">
-                <div class="box-1"><button type="button" onclick="location.href='uploadbook.html'">Upload a book</button></div>
-                <div class="box-1"><button type="button" onclick="location.href='librarian-uploadedbooks.html'">Uploaded books</button></div>
-                <div class="box-1"><button type="button" onclick="location.href='librarian-rent-given-books.html'">Rent given books</button>
-                <div class="box-1"><button type="button" onclick="location.href='librarian-books-books.html'">Purchased books</button></div>
-                <div class="box-1"><button type="button" onclick="location.href='librarian-books-books.html'">books</button></div>
-                <div class="box-1"><button type="button" onclick="location.href='librarian-books-books.html'">Sold books</button></div>
+        <div class="box">
+            <div class="purchase">
+                <div class="block">
+                    For Purchasing 
+                    <br> <button> 
+                        View
+                    </button>
+                </div>
+            </div>
+
+            <div class="rent">
+                <div class="block">
+                    For Renting
+                    <br> <button>
+                        View
+                    </button>
+                </div>
+            </div>
+            <div class="sell">
+                <div class="block">
+                    For Selling
+                    <br> 
+                    <br> 
+                    <br> <button>
+                        View
+                    </button>
+                </div>
             </div>
         </div>
     <div class="footer"> 
