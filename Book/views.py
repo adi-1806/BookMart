@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Library, Bookstore, Books_Library, Books_Store,Books_User, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
+from .models import Library,User, Bookstore, Books_Library, Books_Store,Books_User, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
 from django.contrib.auth.decorators import login_required
 
 
@@ -69,68 +69,95 @@ def SignUp(request):
     
 @login_required(login_url='home')
 def BookUpload(request):
-            if request.method=='POST':
-                username=''
-                
-                if('uname' in request.session):
-                    username=request.session['uname'] 
-                
-                bookname = request.POST['Bkname']
-                author = request.POST['Author']
-                edition = request.POST['edition']
-                price = request.POST['price']
-                publications = request.POST['publications']
-                quantity = request.POST['quantity']
-                purpose = request.POST['sale']
-                ownertype = request.POST['ownertype']
-
-                if ownertype=="User":
-                    details = Books_User(
-                        name = bookname,
-                        author = author,
-                        publications= publications,
-                        edition = edition,
-                        price = price,
-                        quantity = quantity,
-                        purpose = purpose,
-                        book_owner = username
-                    )
-                    details.save()
-
-                    return redirect('UserHome')
-                
-                elif ownertype=="Bookstore":
-                    details = Books_Store(
-                        name = bookname,
-                        author = author,
-                        publications= publications,
-                        edition = edition,
-                        price = price,
-                        quantity = quantity,
-                        purpose = purpose,
-                        book_owner = username
-                    )
-                    details.save()
-
-                    return redirect('BookstoreHome')
-                
-                elif ownertype == "Library":
-                    print(username)
-                    details = Books_Library(
-                        name = bookname,
-                        author = author,
-                        publications= publications,
-                        edition = edition,
-                        price = price,
-                        quantity = quantity,
-                        purpose = purpose,
-                        book_owner = username
-                    )
-                    details.save()
-                    return render(request,'Book/LibraryHome.html')
-
-            return render(request, "Book/BookUpload.html")
+    if request.method=='POST':
+        username=''
         
+        if('uname' in request.session):
+            username=request.session['uname'] 
+        
+        bookname = request.POST['Bkname']
+        author = request.POST['Author']
+        edition = request.POST['edition']
+        price = request.POST['price']
+        publications = request.POST['publications']
+        quantity = request.POST['quantity']
+        purpose = request.POST['sale']
+        ownertype = request.POST['ownertype']
+
+        if ownertype=="User":
+            details = Books_User(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+
+            return render(request, "Book/Libraryhome.html")
+        
+        elif ownertype=="Bookstore":
+            details = Books_Store(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+
+            return render(request, "Book/Bookstorehome.html")
+        
+        elif ownertype == "Library":
+            print(username)
+            details = Books_Library(
+                name = bookname,
+                author = author,
+                publications= publications,
+                edition = edition,
+                price = price,
+                quantity = quantity,
+                purpose = purpose,
+                book_owner = username
+            )
+            details.save()
+            return render(request,'Book/LibraryHome.html')
+
+    return render(request, "Book/BookUpload.html")
+        
+
+def BooksUploaded(request):
+    username=''
+    if('uname' in request.session):
+            username=request.session['uname']
+            
+    details= User.objects.get(username=username)
+
+    if details.role == "LIBRARY":
+        books= Books_Library.objects.filter(book_owner=username)
+        return render(request, "Book/Uploadedbooks.html",{
+             "books" : books
+        })
+    
+    if details.role == "BOOKSTORE":
+        books= Books_Library.objects.filter(book_owner=username)
+        return render(request, "Book/Uploadedbooks.html",{
+             "books" : books
+        })
+    
+    if details.role == "CUSTOMER":
+        books= Books_Library.objects.filter(book_owner=username)
+        return render(request, "Book/Uploadedbooks.html",{
+             "books" : books
+        })
+    
+    return render(request, "Book/Uploadedbooks.html")
 
 #--------------------------------------------------------
 
