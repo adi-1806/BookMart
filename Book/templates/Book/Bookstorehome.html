@@ -13,15 +13,15 @@
         {% csrf_token %}
         <div class="navi">
             <div class="logo"><h1> Bookmart</h1></div>
-            <button type='button' onclick="">History</button>
-            <button type='button' onclick="location.href='homepage.html'">Logout</button>
-            <button type='button' onclick="">Profile</button>
+            <button type='button'><a href="">History</a></button>
+            <button type='button' ><a href="{% url 'home' %}">Logout</a></button>
+            <button type='button'><a href="">Profile</a></button>
         </div>
     <div class="options">
         <div class="librarian-books">
-            <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Upload a book</button></div>
-            <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Uploaded books</button></div>
-            <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Sold books</button></div>
+            <div class="box-1"><button type="button"><a href="{% url 'bookupload' %}">Upload a book</a></button></div>
+            <div class="box-1"><button type="button"><a href="{% url 'booksuploaded' %}">Uploaded books</a></button></div>
+            <div class="box-1"><button type="button"><a href="">Sold books</a></button></div>
         </div>
     </div>
     
