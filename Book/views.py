@@ -131,7 +131,7 @@ def BookUpload(request):
 
     return render(request, "Book/BookUpload.html")
         
-
+@login_required(login_url='home')
 def BooksUploaded(request):
     username=''
     if('uname' in request.session):
@@ -187,7 +187,9 @@ def UserHome(request):
 #         if "uname" in request.session: 
 
     return render(request, "Book/Userhome.html")
-       
+
+def UserSelling(request):
+    return render(request, "Book/Userselling.html")
     
 #-----------------------------------
 
