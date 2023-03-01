@@ -2,61 +2,55 @@
     margin:0;
     padding:0;
 }
-.navi{
-    display: flex;
-    background-color: #006449;
-}
 
-.logo {
+.navi{
+    background-color: #92bf8f;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+}
+.navi h1 {
     text-align: left;
     letter-spacing: 10px;
-    font-size: 30px;
     font-weight:500;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    padding-top: 10px;
-    color:beige;
-    flex-basis:80%; 
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+    padding: 5px; 
 }
-
-.history {
-    flex-basis: 10%;
+.logo {
+    flex-grow: 100;
 }
-.logout {
-    flex-basis: 10%;
-    
+.navi button {
+    float: right;
+    color: black;
+    border: transparent;
+    flex-basis: 5%;
+}
+.navi button:hover {
+    background-color: #006449;
+    color: beige;
 }
 .librarian-books {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
 }
 .box-1 button {
-    background-color: #92bf8f;
+    border: transparent;
+    background-color: #8360c3; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, #8360c3, #2ebf91);
+    height: 100px;
     width: 300px;
-    height: 200px;
-    border: none;
-    margin-top: 30px;
-    margin-right: 10px;
-    border-radius: 20px;
-    color: aliceblue;
-    font-size: larger;
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
 }
-.box-2 button {
-    background-color: #92bf8f;
-    width: 300px;
-    height: 200px;
-    border: none;
-    margin-top: 30px;
-    border-radius: 20px;
-    color: aliceblue;
-    font-size: larger;
-}
-button:hover {
-    background-color: #006449;
+.librarian-books button:hover {
+   color: beige;
+   font-size: large;
 }
 .footer{
     text-align: center;
     background-color: grey;
-    height:500px;
-    margin-top: 50px;
-    padding-top: 40px;
+    height:200px;
 }
