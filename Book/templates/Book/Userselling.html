@@ -1,1 +1,41 @@
-<h1>hii</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Selling</title>
+    <link href="{% static "Book/Userselling.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="navi">
+        BOOKMART
+        <div class="navibar">
+            <ul>
+                <li class="profile"> <a href="{% url 'UserHome' %}">Home</a></li>
+                <li class="profile"> <a href="{% url 'Bookupload/' %}">Upload Book</a></li>
+                <li class="profile"> <a href="{% url 'Booksuploaded' %}">Uploaded Books</a></li>
+                <li class="profile"> <a href="">Appoinment</a></li>
+                <li class="profile"> <a href="">History</a></li>
+                <li class="profile"> <a href=""> Profile</a></li>
+                <li class="profile"> <a href="{% url 'logout' %}"> Logout</a></li>
+                </ul>
+        </div>    
+    </div>
+    <div class="footer">
+        <div class="title">
+            ABOUT US
+        </div>
+        Main objective of "BookMart" is to be able to access the Books in particular region.
+        <br> Developed by,
+        <br> P. Adithya Vardhan 
+        <br> Rishitha
+        <br> K. Vinay kumar
+        <br> G. Vishal
+        <br> Under the guidance of,
+        <br> K. Praveen Kumar
+    </div>
+    </div>
+</body>
+</html>
