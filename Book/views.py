@@ -1,5 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect,redirect
-from django.views import View
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Library, Bookstore, Books_Library, Books_Store,Books_User, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
@@ -8,35 +7,35 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here
 
-
-#@login_required(login_url='loginpage')
-class ProjectHome(View):
-    def post(self, request):
-        userbutton = request.POST['user']
-        librarybutton = request.POST['library']
-        bookstorebutton = request.POST['bookstore']
+def ProjectHome(request):
+        if request.method=="POST":
+            userbutton = request.POST['user']
+            librarybutton = request.POST['library']
+            bookstorebutton = request.POST['bookstore']
 
 
-        if userbutton=='User':
-            return redirect('userlogin')
-        
-        elif librarybutton=='Library':
-            return redirect('librarylogin')
-        
-        elif bookstorebutton=='Bookstore':
-            return redirect('bookstorelogin')
+            if userbutton=='User':
+                return redirect('userlogin')
+            
+            elif librarybutton=='Library':
+                return redirect('librarylogin')
+            
+            elif bookstorebutton=='Bookstore':
+                return redirect('bookstorelogin')
 
-    def get(self, request):
         return render(request, "Book/homepage.html")
 
 def logoutUser(request):
-    del request.session['uname']  
-    logout(request)
-    #messages.info(request, 'Logout successful')
-    return render(request, 'Book/homepage.html')
+        # if('uname' in request.session):
+        #     del request.session['uname']  
+        #     request.session.modified = True
+        logout(request)
+        
+        #messages.info(request, 'Logout successful')
+        return render(request, 'Book/homepage.html')
 
-class SignUp(View):
-    def post(self, request):
+def SignUp(request):
+    if request.method== "POST":    
         form=request.POST['Yes']
         if form=='Submit':
             username = request.POST['name']
@@ -66,84 +65,77 @@ class SignUp(View):
             return render(request, "Book/homepage.html")
 
 
-    def get(self, request):
-        return render(request, "Book/signup.html")
+    return render(request, "Book/signup.html")
     
-class BookUpload(View):
-    def post(self, request):
-        username=''
-        print('welcome')
-        if('uname' in request.session):
-            username=request.session['uname'] 
+@login_required(login_url='home')
+def BookUpload(request):
+            if request.method=='POST':
+                username=''
+                
+                if('uname' in request.session):
+                    username=request.session['uname'] 
+                
+                bookname = request.POST['Bkname']
+                author = request.POST['Author']
+                edition = request.POST['edition']
+                price = request.POST['price']
+                publications = request.POST['publications']
+                quantity = request.POST['quantity']
+                purpose = request.POST['sale']
+                ownertype = request.POST['ownertype']
+
+                if ownertype=="User":
+                    details = Books_User(
+                        name = bookname,
+                        author = author,
+                        publications= publications,
+                        edition = edition,
+                        price = price,
+                        quantity = quantity,
+                        purpose = purpose,
+                        book_owner = username
+                    )
+                    details.save()
+
+                    return redirect('UserHome')
+                
+                elif ownertype=="Bookstore":
+                    details = Books_Store(
+                        name = bookname,
+                        author = author,
+                        publications= publications,
+                        edition = edition,
+                        price = price,
+                        quantity = quantity,
+                        purpose = purpose,
+                        book_owner = username
+                    )
+                    details.save()
+
+                    return redirect('BookstoreHome')
+                
+                elif ownertype == "Library":
+                    print(username)
+                    details = Books_Library(
+                        name = bookname,
+                        author = author,
+                        publications= publications,
+                        edition = edition,
+                        price = price,
+                        quantity = quantity,
+                        purpose = purpose,
+                        book_owner = username
+                    )
+                    details.save()
+                    return render(request,'Book/LibraryHome.html')
+
+            return render(request, "Book/BookUpload.html")
         
-        bookname = request.POST['Bkname']
-        author = request.POST['Author']
-        edition = request.POST['edition']
-        price = request.POST['price']
-        publications = request.POST['publications']
-        quantity = request.POST['quantity']
-        purpose = request.POST['sale']
-        ownertype = request.POST['ownertype']
-
-        print(bookname)
-        print(ownertype)
-        print(username)
-
-        if ownertype=="User":
-            details = Books_User(
-                name = bookname,
-                author = author,
-                publications= publications,
-                edition = edition,
-                price = price,
-                quantity = quantity,
-                purpose = purpose,
-                book_owner = username
-            )
-            details.save()
-
-            return redirect('UserHome')
-        
-        elif ownertype=="Bookstore":
-            details = Books_Store(
-                name = bookname,
-                author = author,
-                publications= publications,
-                edition = edition,
-                price = price,
-                quantity = quantity,
-                purpose = purpose,
-                book_owner = username
-            )
-            details.save()
-
-            return redirect('BookstoreHome')
-        
-        elif ownertype == "Library":
-            print(username)   
-            print("hii") 
-            details = Books_Library(
-                name = bookname,
-                author = author,
-                publications= publications,
-                edition = edition,
-                price = price,
-                quantity = quantity,
-                purpose = purpose,
-                book_owner = username
-            )
-            details.save()
-            return render(request,'Book/LibraryHome.html')
-    def get(self, request):
-        username=''
-        if('uname' in request.session):
-            username=request.session['uname']
-        return render(request, "Book/BookUpload.html",{'uname':username})
 
 #--------------------------------------------------------
 
-class UserLogin(View):
-    def post(self, request):
+def UserLogin(request):
+    if request.method =="POST":
         username=request.POST['username']
         password=request.POST['pwd']
 
@@ -155,25 +147,25 @@ class UserLogin(View):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return redirect('userhome')
+                return render(request, 'Book/Userhome.html')
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/login.html")
-        
-    def get(self, request):
-        return render(request, "Book/login.html")
 
-class UserHome(View):
-    def post(self, request):
-        pass
+    return render(request, "Book/login.html")
 
-    def get(self, request):
-        return render(request, "Book/Userhome.html")
+@login_required(login_url='home')
+def UserHome(request):
+#     def Userhome(request):
+#         if "uname" in request.session: 
+
+    return render(request, "Book/Userhome.html")
+       
     
 #-----------------------------------
 
-class BookstoreLogin(View):
-    def post(self, request):
+def BookstoreLogin(request):
+    if request.method == "POST":
         username=request.POST['username']
         password=request.POST['pwd']
 
@@ -185,25 +177,22 @@ class BookstoreLogin(View):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return redirect('bookstorehome')
+                return render(request, 'Book/Bookstorehome.html')
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/Bookstorelogin.html")
-        
-    def get(self, request):
-        return render(request, "Book/Bookstorelogin.html")
 
-class BookstoreHome(View):
-    def post(self, request):
-        pass
+    return render(request, "Book/Bookstorelogin.html")
 
-    def get(self, request):
-        return render(request, "Book/Bookstorehome.html")
-    
+@login_required(login_url='home')
+def BookstoreHome(request):
+
+    return render(request, "Book/Bookstorehome.html")
+      
+            
 #---------------------------------------------------------------
-
-class LibraryLogin(View):
-    def post(self, request):
+def LibraryLogin(request):
+    if request.method== "POST":
         username=request.POST['username']
         password=request.POST['pwd']
 
@@ -215,17 +204,18 @@ class LibraryLogin(View):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return redirect('libraryhome')
+                return render(request,'Book/Libraryhome.html')
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/Librarylogin.html")
         
-    def get(self, request):
-        return render(request, "Book/librarylogin.html")
+    return render(request, "Book/librarylogin.html")
 
-class LibraryHome(View):
-    def post(self, request):
-        pass
+@login_required(login_url='home')
+def LibraryHome(request):
 
-    def get(self, request):
+        if request.method == "POST":
+                return render(request, "Book/BookUpload.html")
+
         return render(request, "Book/Libraryhome.html")
+        
