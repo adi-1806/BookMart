@@ -147,7 +147,7 @@ def UserLogin(request):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return render(request, 'Book/Userhome.html')
+                return redirect("userhome")
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/login.html")
@@ -177,7 +177,7 @@ def BookstoreLogin(request):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return render(request, 'Book/Bookstorehome.html')
+                return redirect("bookstorehome")
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/Bookstorelogin.html")
@@ -204,7 +204,7 @@ def LibraryLogin(request):
             if user is not None:
                 request.session['uname']=username
                 login(request, user)
-                return render(request,'Book/Libraryhome.html')
+                return redirect("libraryhome")
             else:
                 messages.info(request, 'Username Or Password is incorrect')
                 return render(request, "Book/Librarylogin.html")

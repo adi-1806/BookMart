@@ -33,10 +33,11 @@
                 {% for msg in messages %}
                 {{msg}}
                 {% endfor %}
-                <td> <button>login</button></td>
+                <td><button>login</button>
+                </td>
             </tr>
             <tr>
-                <!-- <td> <a href="home.html">New User?</a> -->
+                <td> <a href="{% url 'signup' %}">New User?</a>
             </tr>
         </table>
         </main>
