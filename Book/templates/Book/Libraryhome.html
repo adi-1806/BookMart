@@ -14,12 +14,16 @@
         <div class="navi">
             <div class="logo"><h1> Bookmart</h1></div>
             <button type='button'><a href="{% url 'uploadbook'%}"></a>History</button>
-            <button type='button'><a href="{% url 'uploadbook'%}"></a>Logout</button>
+            <button type='button'><a href="{% url 'homepage'%}"></a>Logout</button>
             <button type='button'><a href="{% url 'uploadbook'%}"></a>Profile</button>
         </div>
 
         <div class="options">
             <div class="librarian-books">
+                <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Upload a book</button></div>
+                <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Uploaded books</button></div>
+                <div class="box-1"><button type="button"><a href="{% url 'uploadbook'%}"></a>Rent given books</button>
+            </div>
                 
         </div>
 
