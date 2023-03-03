@@ -182,7 +182,6 @@ def UserLogin(request):
 def UserHome(request):
 #     def Userhome(request):
 #         if "uname" in request.session: 
-
     return render(request, "Book/Userhome.html")
 
 def UserSelling(request):
