@@ -77,7 +77,9 @@ def BookUpload(request):
         publications = request.POST['publications']
         quantity = request.POST['quantity']
         purpose = request.POST['sale']
+        image = request.FILES["image"]
         ownertype = request.POST['ownertype']
+
 
         if ownertype=="User":
             details = Books_User(
@@ -110,7 +112,6 @@ def BookUpload(request):
             return render(request, "Book/Bookstorehome.html")
         
         elif ownertype == "Library":
-            print(username)
             details = Books_Library(
                 name = bookname,
                 author = author,
@@ -119,6 +120,7 @@ def BookUpload(request):
                 price = price,
                 quantity = quantity,
                 purpose = purpose,
+                image = image,
                 book_owner = username
             )
             details.save()

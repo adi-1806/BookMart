@@ -9,7 +9,7 @@
     <link href="{% static 'Book/BookUpload.css' %}" rel="stylesheet">
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         
     <main class="box">
@@ -60,6 +60,10 @@
                     <option value="Bookstore">Bookstore</option>
                     <option value="Library">Library</option>  
                 </select>
+            </td>
+            <td>
+                <input type = "file" name="image"/>
+                <button>Upload!</button>
             </td>
         </tr>
         <tr>

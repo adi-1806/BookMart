@@ -9,7 +9,6 @@ urlpatterns=[
     path("Booksuploaded",views.BooksUploaded, name="booksuploaded"),
 
 
-
     path("UserLogin", views.UserLogin, name="userlogin"),
     path("UserHome", views.UserHome, name="userhome"),
     path("Usersellingpage", views.UserSelling, name="userselling"),
