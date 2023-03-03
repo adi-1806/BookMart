@@ -26,12 +26,7 @@ def ProjectHome(request):
         return render(request, "Book/homepage.html")
 
 def logoutUser(request):
-        # if('uname' in request.session):
-        #     del request.session['uname']  
-        #     request.session.modified = True
         logout(request)
-        
-        #messages.info(request, 'Logout successful')
         return render(request, 'Book/homepage.html')
 
 def SignUp(request):
