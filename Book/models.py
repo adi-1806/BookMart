@@ -138,8 +138,6 @@ class Books_User(models.Model):
     book_owner= models.CharField(max_length=100, null=True)
 
 
-
-
 class Books_Store(models.Model):
     name=models.CharField(max_length=100, null=True)
     author=models.CharField(max_length=50, null=True)

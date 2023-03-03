@@ -90,11 +90,12 @@ def BookUpload(request):
                 price = price,
                 quantity = quantity,
                 purpose = purpose,
+                image = image,
                 book_owner = username
             )
             details.save()
 
-            return render(request, "Book/Libraryhome.html")
+            return render(request, "Book/Userselling.html")
         
         elif ownertype=="Bookstore":
             details = Books_Store(
@@ -105,6 +106,7 @@ def BookUpload(request):
                 price = price,
                 quantity = quantity,
                 purpose = purpose,
+                image = image,
                 book_owner = username
             )
             details.save()
@@ -143,13 +145,13 @@ def BooksUploaded(request):
         })
     
     if details.role == "BOOKSTORE":
-        books= Books_Library.objects.filter(book_owner=username)
+        books= Books_Store.objects.filter(book_owner=username)
         return render(request, "Book/Uploadedbooks.html",{
              "books" : books
         })
     
     if details.role == "CUSTOMER":
-        books= Books_Library.objects.filter(book_owner=username)
+        books= Books_User.objects.filter(book_owner=username)
         return render(request, "Book/Uploadedbooks.html",{
              "books" : books
         })
