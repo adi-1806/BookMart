@@ -158,6 +158,7 @@ def BooksUploaded(request):
     
     return render(request, "Book/Uploadedbooks.html")
 
+
 #--------------------------------------------------------
 
 def UserLogin(request):
@@ -182,12 +183,29 @@ def UserLogin(request):
 
 @login_required(login_url='home')
 def UserHome(request):
-#     def Userhome(request):
-#         if "uname" in request.session: 
     return render(request, "Book/Userhome.html")
 
+@login_required(login_url='home')
 def UserSelling(request):
     return render(request, "Book/Userselling.html")
+
+@login_required(login_url='home')
+def UserProfile(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        address = request.POST['address']
+        email= request.POST['Email']
+        pno = request.POST['Pno']
+
+        details = CustomerProfile(
+            Name = name,
+            email = email,
+            Address = address,
+            PhoneNo = pno
+        )
+
+        details.save()
+    return render(request, "Book/Userprofile.html")
     
 #-----------------------------------
 
@@ -216,6 +234,9 @@ def BookstoreHome(request):
 
     return render(request, "Book/Bookstorehome.html")
       
+@login_required(login_url='home')
+def Bookstoreprofile(request):
+    return render(request, "Book/Bookstoreprofile.html")
             
 #---------------------------------------------------------------
 def LibraryLogin(request):
@@ -246,3 +267,6 @@ def LibraryHome(request):
 
         return render(request, "Book/Libraryhome.html")
         
+@login_required(login_url='home')
+def Libraryprofile(request):
+    return render(request, "Book/Libraryprofile.html")

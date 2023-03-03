@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "Book/Userprofile.css" %}" rel="stylesheet">
+</head>
+<body>
+    <main class="box">
+    <table>
+        <tr>
+            <td class="title"> User Profile</td> 
+        </tr>
+        <tr>
+            <td class="Label">Name</td>
+            <td class="Label">Address</td> 
+        </tr> 
+        <tr>
+            <div class="inputbox">
+            <td> <input type="text" name="name"> </td>
+            <td> <input type="text" name="address"></td>    
+            </div>         
+        </tr>        
+        <tr> 
+            <td class="Label">Email</td>
+            <td class="Label">Phone Number</td>
+            
+        </tr>
+        <tr>     
+            <td> <input type="text" name="Email"></td>       
+            <td> <input type="text" name="Pno"></td>             
+        </tr> 
+        
+        <tr>
+            <td><input type="submit" name = "submit"></td> 
+        </tr> 
+    </table>
+    </main>
+</body>
+</html>

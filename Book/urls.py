@@ -9,14 +9,17 @@ urlpatterns=[
     path("Booksuploaded",views.BooksUploaded, name="booksuploaded"),
 
 
-    path("UserLogin", views.UserLogin, name="userlogin"),
-    path("UserHome", views.UserHome, name="userhome"),
+    path("Userlogin", views.UserLogin, name="userlogin"),
+    path("Userhome", views.UserHome, name="userhome"),
     path("Usersellingpage", views.UserSelling, name="userselling"),
+    path("Userprofile", views.UserProfile, name="userprofile"),
 
-    path("LibraryLogin", views.LibraryLogin, name="librarylogin"),
-    path("LibraryHome", views.LibraryHome, name="libraryhome"),
+    path("Librarylogin", views.LibraryLogin, name="librarylogin"),
+    path("Libraryhome", views.LibraryHome, name="libraryhome"),
+    path("Libraryprofile", views.Libraryprofile, name="libraryprofile"),
 
     path("BookstoreLogin", views.BookstoreLogin, name="bookstorelogin"),
     path("BookstoreHome", views.BookstoreHome, name="bookstorehome"),
+    path("Bookstoreprofile", views.Bookstoreprofile, name="bookstoreprofile"),
 
 ]
