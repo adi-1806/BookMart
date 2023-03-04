@@ -26,6 +26,8 @@ def ProjectHome(request):
         return render(request, "Book/homepage.html")
 
 def logoutUser(request):
+        if('uname' in request.session): 
+            del request.session['uname']  
         logout(request)
         return render(request, 'Book/homepage.html')
 

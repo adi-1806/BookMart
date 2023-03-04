@@ -1,16 +1,42 @@
+{% include "includes/bookstemplate.html" %}
+
+{% load static %}
+
+{% block page_title %}
+
+{% endblock %}
 
 
-<body>
+{% block content %}
+<div class="container-1">
+    <h2>For Rent</h2>
+    <div class="box">
     {% for book in books %}
-        {{book.name}}
-        {{book.author}}
-        {{book.publications}}
-        {{book.edition}}
-        {{book.price}}
-        {{book.quantity}}
-        {{book.purpose}}
-        {{book.book_owner}}
-        <img src="{{book.image.url}}" width="150" height="150">
-        <br><br>
+    <div class="book">
+        <img src="{{book.image.url}}" width="150px" height="150px">
+        <div class="text">
+        <p>    
+            Book Name:
+            {{book.name}}
+            <p>Author:
+            {{book.author}}</p>
+            <p>Publications:
+            {{book.publications}}</p>
+            <p>Edition:
+            {{book.edition}}</p>
+            <p>Price: 
+            {{book.price}}</p>
+            <p> Quantity:
+            {{book.quantity}}</p>
+            <p> Purpose:
+            {{book.purpose}}</p>
+            <p> Book Owner: 
+            {{book.book_owner}}</p>
+            </div>
+            <a href=""><input type="button" name="button" value="Buy"></a>
+        </p>
+    </div>
     {% endfor%}
-</body>
+
+</div>
+{% endblock %}

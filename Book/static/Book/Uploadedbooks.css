@@ -1,0 +1,40 @@
+*{
+    margin: 10px;
+    position: relative;
+}
+.container-1{
+    background-color: beige;
+    border-radius: 10px;
+    padding: 10px;
+}
+.box{
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 20px;
+    /* display: flex; */
+    border: 2px solid;
+    border-color: rgb(50, 206, 206);
+    background-color: azure;
+    border-radius: 5px;
+}
+.book{
+    display: flex;
+}
+input{
+    border-radius: 5px;
+    margin-top: 10px;
+    left: 0px;
+}
+a{
+    padding: 0px;
+}
+.text{
+    min-height: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-right: 0px;
+}
+p{
+    width: 250px;
+}
