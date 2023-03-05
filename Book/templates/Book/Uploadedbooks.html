@@ -9,31 +9,64 @@
 
 {% block content %}
 <div class="container-1">
-    <h2>For Rent</h2>
+    <h2>For Sale</h2>
     <div class="box">
-    {% for book in books %}
+    {% for book in books_sale %}
     <div class="book">
         <img src="{{book.image.url}}" width="150px" height="150px">
         <div class="text">
         <p>    
             Book Name:
-            {{book.name}}
+            {{book.name | title}}
             <p>Author:
-            {{book.author}}</p>
+            {{book.author | title}}</p>
             <p>Publications:
-            {{book.publications}}</p>
+            {{book.publications | title}}</p>
             <p>Edition:
-            {{book.edition}}</p>
+            {{book.edition | title}}</p>
             <p>Price: 
-            {{book.price}}</p>
+            {{book.price | title}}</p>
             <p> Quantity:
-            {{book.quantity}}</p>
+            {{book.quantity | title}}</p>
             <p> Purpose:
-            {{book.purpose}}</p>
+            {{book.purpose | title}}</p>
             <p> Book Owner: 
-            {{book.book_owner}}</p>
+            {{book.book_owner | title}}</p>
             </div>
             <a href=""><input type="button" name="button" value="Buy"></a>
+        </p>
+    </div>
+    {% endfor%}
+
+</div>
+
+
+<div class="container-1">
+    <h2>For Rent</h2>
+    <div class="box">
+    {% for book in books_rent %}
+    <div class="book">
+        <img src="{{book.image.url}}" width="150px" height="150px">
+        <div class="text">
+        <p>    
+            Book Name:
+            {{book.name | title}}
+            <p>Author:
+            {{book.author | title}}</p>
+            <p>Publications:
+            {{book.publications | title}}</p>
+            <p>Edition:
+            {{book.edition | title}}</p>
+            <p>Price: 
+            {{book.price | title}}</p>
+            <p> Quantity:
+            {{book.quantity | title}}</p>
+            <p> Purpose:
+            {{book.purpose | title}}</p>
+            <p> Book Owner: 
+            {{book.book_owner | title}}</p>
+            </div>
+            <a href=""><input type="button" name="button" value="Rent"></a>
         </p>
     </div>
     {% endfor%}

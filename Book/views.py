@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -67,10 +68,11 @@ def SignUp(request):
 @login_required(login_url='home')
 def BookUpload(request):
     if request.method=='POST':
-        username=''
+        # username=''
         
-        if('uname' in request.session):
-            username=request.session['uname'] 
+        # if('uname' in request.session):
+        #     username=request.session['uname'] 
+        current_user = request.user
         
         bookname = request.POST['Bkname']
         author = request.POST['Author']
@@ -93,7 +95,7 @@ def BookUpload(request):
                 quantity = quantity,
                 purpose = purpose,
                 image = image,
-                book_owner = username
+                book_owner = current_user
             )
             details.save()
 
@@ -109,7 +111,7 @@ def BookUpload(request):
                 quantity = quantity,
                 purpose = purpose,
                 image = image,
-                book_owner = username
+                book_owner = current_user
             )
             details.save()
 
@@ -125,7 +127,7 @@ def BookUpload(request):
                 quantity = quantity,
                 purpose = purpose,
                 image = image,
-                book_owner = username
+                book_owner = current_user
             )
             details.save()
             return render(request,'Book/LibraryHome.html')
@@ -134,29 +136,41 @@ def BookUpload(request):
         
 @login_required(login_url='home')
 def BooksUploaded(request):
-    username=''
-    if('uname' in request.session):
-            username=request.session['uname']
+    # username=''
+    # if('uname' in request.session):
+    #         username=request.session['uname']
+    current_user = request.user
             
-    details= User.objects.get(username=username)
+    details= User.objects.get(username=current_user)
 
     if details.role == "LIBRARY":
-        books= Books_Library.objects.filter(book_owner=username)
+        books_sale= Books_Library.objects.filter(book_owner=current_user, purpose ='Sale')
+        books_rent= Books_Library.objects.filter(book_owner=current_user, purpose ='Rent')
+
         return render(request, "Book/Uploadedbooks.html",{
-             "books" : books
+             "books_sale" : books_sale,
+             "books_rent" : books_rent
         })
     
     if details.role == "BOOKSTORE":
-        books= Books_Store.objects.filter(book_owner=username)
+        books_sale= Books_Store.objects.filter(book_owner=current_user, purpose ='Sale')
+        books_rent= Books_Store.objects.filter(book_owner=current_user, purpose ='Rent')
+
         return render(request, "Book/Uploadedbooks.html",{
-             "books" : books
+             "books_sale" : books_sale,
+             "books_rent" : books_rent
         })
     
+    
     if details.role == "CUSTOMER":
-        books= Books_User.objects.filter(book_owner=username)
+        books_sale= Books_User.objects.filter(book_owner=current_user, purpose ='Sale')
+        books_rent= Books_User.objects.filter(book_owner=current_user, purpose ='Rent')
+
         return render(request, "Book/Uploadedbooks.html",{
-             "books" : books
+             "books_sale" : books_sale,
+             "books_rent" : books_rent
         })
+        
     
     return render(request, "Book/Uploadedbooks.html")
 
@@ -193,21 +207,44 @@ def UserSelling(request):
 
 @login_required(login_url='home')
 def UserProfile(request):
+
+    current_user = request.user
+
+    details = CustomerProfile.objects.get(user=current_user)
+    
     if request.method == "POST":
+        
         name = request.POST['name']
         address = request.POST['address']
         email= request.POST['Email']
         pno = request.POST['Pno']
+        
+        if name!="":
+            CustomerProfile.objects.filter(user=details.user).update(Name=name)
+        else:
+            CustomerProfile.objects.filter(user=details.user).update(Name=details.Name)
 
-        details = CustomerProfile(
-            Name = name,
-            email = email,
-            Address = address,
-            PhoneNo = pno
-        )
+        if email!="":
+            CustomerProfile.objects.filter(user=details.user).update(email=email)
+        else:
+            CustomerProfile.objects.filter(user=details.user).update(email=details.email)
 
-        details.save()
-    return render(request, "Book/Userprofile.html")
+        if address!="":
+            CustomerProfile.objects.filter(user=details.user).update(Address=address)
+        else:
+            CustomerProfile.objects.filter(user=details.user).update(Address=details.Address)
+
+        if pno!="":
+            CustomerProfile.objects.filter(user=details.user).update(PhoneNo=pno)
+        else:
+            CustomerProfile.objects.filter(user=details.user).update(PhoneNo=details.PhoneNo)
+        
+        return HttpResponseRedirect("/Userhome")
+    
+    return render(request, "Book/Userprofile.html",
+                  {
+                    "details" : details
+                  })
     
 #-----------------------------------
 
