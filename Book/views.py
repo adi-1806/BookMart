@@ -207,9 +207,7 @@ def UserSelling(request):
 
 @login_required(login_url='home')
 def UserProfile(request):
-
     current_user = request.user
-
     details = CustomerProfile.objects.get(user=current_user)
     
     if request.method == "POST":
@@ -241,8 +239,7 @@ def UserProfile(request):
         
         return HttpResponseRedirect("/Userhome")
     
-    return render(request, "Book/Userprofile.html",
-                  {
+    return render(request, "Book/Userprofile.html",{
                     "details" : details
                   })
     
@@ -275,7 +272,47 @@ def BookstoreHome(request):
       
 @login_required(login_url='home')
 def Bookstoreprofile(request):
-    return render(request, "Book/Bookstoreprofile.html")
+    current_user = request.user
+    details = BookstoreProfile.objects.get(user=current_user)
+    
+    if request.method == "POST":
+        
+        BookStoreName = request.POST['BookStoreName']
+        BookStoreAddress = request.POST['BookStoreAddress']
+        OwnerName = request.POST['OwnerName']
+        email= request.POST['Email']
+        OwnerpNo = request.POST['OwnerpNo']
+        
+        if BookStoreName!="":
+            BookstoreProfile.objects.filter(user=details.user).update(BookStoreName=BookStoreName)
+        else:
+            BookstoreProfile.objects.filter(user=details.user).update(BookStoreName=details.BookStoreName)
+
+        if email!="":
+            BookstoreProfile.objects.filter(user=details.user).update(email=email)
+        else:
+            BookstoreProfile.objects.filter(user=details.user).update(email=details.email)
+
+        if BookStoreAddress!="":
+            BookstoreProfile.objects.filter(user=details.user).update(BookStoreAddress=BookStoreAddress)
+        else:
+            BookstoreProfile.objects.filter(user=details.user).update(BookStoreAddress=details.BookStoreAddress)
+
+        if OwnerpNo!="":
+            BookstoreProfile.objects.filter(user=details.user).update(OwnerpNo=OwnerpNo)
+        else:
+            BookstoreProfile.objects.filter(user=details.user).update(OwnerpNo=details.OwnerpNo)
+        
+        if OwnerName!="":
+            BookstoreProfile.objects.filter(user=details.user).update(OwnerName=OwnerName)
+        else:
+            BookstoreProfile.objects.filter(user=details.user).update(OwnerName=details.OwnerName)
+
+        return HttpResponseRedirect("/Bookstorehome")
+    
+    return render(request, "Book/Bookstoreprofile.html",{
+                    "details" : details
+                  })
             
 #---------------------------------------------------------------
 def LibraryLogin(request):
@@ -308,4 +345,44 @@ def LibraryHome(request):
         
 @login_required(login_url='home')
 def Libraryprofile(request):
-    return render(request, "Book/Libraryprofile.html")
+    current_user = request.user
+    details = LibraryProfile.objects.get(user=current_user)
+    
+    if request.method == "POST":
+        
+        LibraryName = request.POST['LibraryName']
+        LibraryAddress = request.POST['LibraryAddress']
+        LibrarianName = request.POST['LibrarianName']
+        email= request.POST['Email']
+        LibrarianpNo = request.POST['LibrarianpNo']
+        
+        if LibraryName!="":
+            LibraryProfile.objects.filter(user=details.user).update(LibraryName=LibraryName)
+        else:
+            LibraryProfile.objects.filter(user=details.user).update(LibraryName=details.LibraryName)
+
+        if email!="":
+            LibraryProfile.objects.filter(user=details.user).update(email=email)
+        else:
+            LibraryProfile.objects.filter(user=details.user).update(email=details.email)
+
+        if LibraryAddress!="":
+            LibraryProfile.objects.filter(user=details.user).update(LibraryAddress=LibraryAddress)
+        else:
+            LibraryProfile.objects.filter(user=details.user).update(LibraryAddress=details.LibraryAddress)
+
+        if LibrarianpNo!="":
+            LibraryProfile.objects.filter(user=details.user).update(LibrarianpNo=LibrarianpNo)
+        else:
+            LibraryProfile.objects.filter(user=details.user).update(LibrarianpNo=details.LibrarianpNo)
+        
+        if LibrarianName!="":
+            LibraryProfile.objects.filter(user=details.user).update(LibrarianName=LibrarianName)
+        else:
+            LibraryProfile.objects.filter(user=details.user).update(LibrarianName=details.LibrarianName)
+
+        return HttpResponseRedirect("/Libraryhome")
+    
+    return render(request, "Book/Libraryprofile.html",{
+                    "details" : details
+                  })

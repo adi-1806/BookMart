@@ -9,48 +9,43 @@
 
 </head>
 <body>
-    <main class="box">
-    <table>
-        <tr>
-            <td class="title"> REGISTARTION FOR BOOKSTORE</td> 
-        </tr>
-        <tr>
-            <td class="Label"> Bookstore Name</td>
-            <td class="Label"> Bookstore Address</td> 
-        </tr> 
-        <tr>
-            <div class="inputbox">
-            <td> <input type="text" name="strname"> </td>
-            <td> <input type="text" name="straddress"></td>    
-            </div>         
-        </tr>        
-        <tr> 
-            <td class="Label">Store Owner Name</td>
-            <td class="Label"> Owner Phone Number</td>
-            
-        </tr>
-        <tr>     
-            <td> <input type="text" name="Owname"</td>       
-            <td> <input type="text" name="Pno"></td>             
-        </tr> 
-        <tr>
-            <td class="Label">Email </td>
-            <td class="Label">Set Password </td>            
-        </tr> 
-        <tr>
-            <td> <input type="email" name="email"></td>
-            <td> <input type="password" name="pwd"> </td>
-        </tr>
-        <tr>
-            <td class="Label"> Address</td>
-        </tr> 
-        <tr>
-            <td> <input type="text" name="address"> 
-        </tr>
-        <tr>
-            <td><input type="submit" name = "submit"></td> 
-        </tr> 
-    </table>
-    </main>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <main class="box">
+        <table>
+            <tr>
+                <td class="title">Bookstore Profile</td> 
+            </tr>
+            <tr>
+                <td class="Label"> Bookstore Name</td>
+                <td class="Label"> Bookstore Address</td> 
+            </tr> 
+            <tr>
+                <div class="inputbox">
+                <td> <input type="text" name="BookStoreName" placeholder="{{details.BookStoreName}}"> </td>
+                <td> <input type="text" name="BookStoreAddress" placeholder="{{details.BookStoreAddress}}"></td>    
+                </div>         
+            </tr>        
+            <tr> 
+                <td class="Label">Store Owner Name</td>
+                <td class="Label"> Owner Phone Number</td>
+                
+            </tr>
+            <tr>     
+                <td> <input type="text" name="OwnerName" placeholder="{{details.OwnerName}}"></td>       
+                <td> <input type="text" name="OwnerpNo" placeholder="{{details.OwnerpNo}}"></td>             
+            </tr> 
+            <tr>
+                <td class="Label">Email </td>        
+            </tr> 
+            <tr>
+                <td> <input type="email" name="Email" placeholder="{{details.email}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name = "submit"></td> 
+            </tr> 
+        </table>
+        </main>
+    </form>
 </body>
 </html>
