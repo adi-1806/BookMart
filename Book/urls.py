@@ -14,6 +14,13 @@ urlpatterns=[
     path("Userhome", views.UserHome, name="userhome"),
     path("Usersellingpage", views.UserSelling, name="userselling"),
     path("Userprofile", views.UserProfile, name="userprofile"),
+    path("UserPurchasingBookstore", views.UserPurBookstore, name="userpurchasingbookstore"),
+    path("UserPurchasingUser", views.UserPurUser, name="userpurchasingUser"),
+    path("UserRentingLib", views.UserRentLib, name="userrentinglib"),
+    path("UserRentingUser", views.UserRentUser, name="userrentingUser"),
+    path("UserLibBooks/<str:pk>/", views.IndiLibraryBooks, name="indilibbooks"),
+    path("UserBSBooks/<str:pk>/", views.IndiBookstoreBooks, name="indibsbooks"),
+
 
     path("Librarylogin", views.LibraryLogin, name="librarylogin"),
     path("Libraryhome", views.LibraryHome, name="libraryhome"),

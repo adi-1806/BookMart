@@ -22,9 +22,18 @@
         <div class="box">
             <div class="purchase">
                 <div class="block">
-                    For Purchasing 
+                    <p>For Purchasing </p>
+                    <br>
+                    <p>from Bookstore</p>
+                    <br> <button><a href="{% url 'userpurchasingbookstore' %}">
+                        Click here!
+                    </a>
+                    </button>
+                    <p>from Regular Users</p>
                     <br> <button> 
-                        View
+                        <a href="{% url 'userpurchasingUser' %}">
+                            Click here!
+                        </a>
                     </button>
                 </div>
             </div>
@@ -32,18 +41,27 @@
             <div class="rent">
                 <div class="block">
                     For Renting
-                    <br> <button>
-                        View
+                    <br>
+                    <p>from Library</p>
+                    <br> <button><a href="{% url 'userrentinglib' %}">
+                        Click here!
+                    </a>
+                    </button>
+                    <p>from Regular Users</p>
+                    <br> <button> 
+                        <a href="{% url 'userrentingUser' %}">
+                            Click here!
+                        </a>
                     </button>
                 </div>
             </div>
             <div class="sell">
                 <div class="block">
-                    For Selling 
+                    <p>If you want to sell a book?</p>
                     <br> 
                     <br> 
                     <br> <button><a href="{% url 'userselling' %}">
-                        View
+                        Click here!
                     </a>
                     </button>
                 </div>

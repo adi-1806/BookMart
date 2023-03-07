@@ -1,0 +1,17 @@
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for books in books %}
+            {% if books.image %}
+            <img src="{{books.image.url}}" width="150px" height="150px">
+            {{books.LibraryName}}
+            {{books.LibraryAddress}}
+            {{books.LibrarianpNo}}
+            <button class=""><a href={% url 'indilibbooks' books.id %}>Books</a></button>
+            <br>
+            <br>
+            {% endif %}
+        {% endfor %}
+        
+    </form>
+</body>

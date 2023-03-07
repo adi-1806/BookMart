@@ -1,5 +1,5 @@
 import os
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -228,7 +228,6 @@ def UserProfile(request):
             details.save()
         
         if name!="":
-            print(CustomerProfile.objects.filter(user=details.user))
             CustomerProfile.objects.filter(user=details.user).update(Name=name)
 
         if email!="":
@@ -246,6 +245,51 @@ def UserProfile(request):
                     "details" : details
                   })
     
+def UserPurBookstore(request):
+    books = BookstoreProfile.objects.filter()
+    return render(request, "Book/UserPurBstore.html",{
+        "books" : books
+    })
+
+def UserPurUser(request):
+    books = Books_User.objects.filter(purpose='Sale')
+    return render(request, "Book/UserPurUser.html",{
+        "books" : books
+    })
+
+def UserRentLib(request):
+    books = LibraryProfile.objects.filter()
+    details = LibraryProfile.objects.get(LibraryName='warangal')
+    return render(request, "Book/UserRentLib.html",{
+        "books" : books
+    })
+    
+def UserRentUser(request):
+    books = Books_User.objects.filter(purpose='Rent')
+    return render(request, "Book/UserRentUser.html",{
+        "books" : books
+    })
+
+def IndiLibraryBooks(request, pk):
+    details = LibraryProfile.objects.get(id=pk)
+    books= Books_Library.objects.filter(book_owner =details.user)
+    if books:
+        return render(request, "Book/UserLibBooks.html",{
+            "books" : books
+        })
+    else:
+        return HttpResponse('NO books present')
+    
+def IndiBookstoreBooks(request, pk):
+    details = BookstoreProfile.objects.get(id=pk)
+    books= Books_Store.objects.filter(book_owner =details.user)
+    if books:
+        return render(request, "Book/UserBSBooks.html",{
+            "books" : books
+        })
+    else:
+        return HttpResponse('NO books present')
+
 #-----------------------------------
 
 def BookstoreLogin(request):
