@@ -56,6 +56,8 @@ class LibraryProfile(models.Model):
     LibraryAddress = models.CharField(max_length=200, null=True)
     LibrarianName = models.CharField(max_length=100, null=True)
     LibrarianpNo = models.IntegerField( null=True)
+    image = models.ImageField(upload_to="profiles", null=True)
+
 
 class BookstoreManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
@@ -83,6 +85,7 @@ class BookstoreProfile(models.Model):
     BookStoreAddress = models.CharField(max_length=200, null=True)
     OwnerName = models.CharField(max_length=100, null=True)
     OwnerpNo = models.IntegerField( null=True)
+    image = models.ImageField(upload_to="profiles", null=True)
 
 
 @receiver(post_save, sender=Bookstore)
@@ -115,6 +118,7 @@ class CustomerProfile(models.Model):
     email = models.EmailField(unique=True, null=True)
     Address = models.CharField(max_length=200, null=True)
     PhoneNo = models.IntegerField( null=True)
+    image = models.ImageField(upload_to="profiles", null=True)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
 

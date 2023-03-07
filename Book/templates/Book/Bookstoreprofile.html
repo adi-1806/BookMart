@@ -9,13 +9,21 @@
 
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <main class="box">
         <table>
             <tr>
                 <td class="title">Bookstore Profile</td> 
             </tr>
+
+            {% if details.image %} 
+            <img src="{{details.image.url}}" width="150px" height="150px">
+
+            {% else %} <h1>No profile pic</h1> 
+
+            {% endif %}
+
             <tr>
                 <td class="Label"> Bookstore Name</td>
                 <td class="Label"> Bookstore Address</td> 
@@ -40,6 +48,12 @@
             </tr> 
             <tr>
                 <td> <input type="email" name="Email" placeholder="{{details.email}}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type = "file" name="image"/>
+                    <button>Upload!</button>
+                </td>
             </tr>
             <tr>
                 <td><input type="submit" name = "submit"></td> 

@@ -1,3 +1,4 @@
+import os
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
@@ -207,7 +208,8 @@ def UserSelling(request):
 
 @login_required(login_url='home')
 def UserProfile(request):
-    current_user = request.user
+    current_user=request.user
+
     details = CustomerProfile.objects.get(user=current_user)
     
     if request.method == "POST":
@@ -216,27 +218,28 @@ def UserProfile(request):
         address = request.POST['address']
         email= request.POST['Email']
         pno = request.POST['Pno']
+        imagefield = request.FILES["image"]
+
+        if imagefield!="":
+            if details.image!="":
+                os.remove(details.image.path)
+
+            details.image = imagefield
+            details.save()
         
         if name!="":
+            print(CustomerProfile.objects.filter(user=details.user))
             CustomerProfile.objects.filter(user=details.user).update(Name=name)
-        else:
-            CustomerProfile.objects.filter(user=details.user).update(Name=details.Name)
 
         if email!="":
             CustomerProfile.objects.filter(user=details.user).update(email=email)
-        else:
-            CustomerProfile.objects.filter(user=details.user).update(email=details.email)
 
         if address!="":
             CustomerProfile.objects.filter(user=details.user).update(Address=address)
-        else:
-            CustomerProfile.objects.filter(user=details.user).update(Address=details.Address)
 
         if pno!="":
             CustomerProfile.objects.filter(user=details.user).update(PhoneNo=pno)
-        else:
-            CustomerProfile.objects.filter(user=details.user).update(PhoneNo=details.PhoneNo)
-        
+       
         return HttpResponseRedirect("/Userhome")
     
     return render(request, "Book/Userprofile.html",{
@@ -282,31 +285,30 @@ def Bookstoreprofile(request):
         OwnerName = request.POST['OwnerName']
         email= request.POST['Email']
         OwnerpNo = request.POST['OwnerpNo']
+        imagefield = request.FILES["image"]
+
+        if imagefield!="":
+            if details.image!="":
+                os.remove(details.image.path)
+
+            details.image = imagefield
+            details.save()
+
         
         if BookStoreName!="":
             BookstoreProfile.objects.filter(user=details.user).update(BookStoreName=BookStoreName)
-        else:
-            BookstoreProfile.objects.filter(user=details.user).update(BookStoreName=details.BookStoreName)
 
         if email!="":
             BookstoreProfile.objects.filter(user=details.user).update(email=email)
-        else:
-            BookstoreProfile.objects.filter(user=details.user).update(email=details.email)
 
         if BookStoreAddress!="":
             BookstoreProfile.objects.filter(user=details.user).update(BookStoreAddress=BookStoreAddress)
-        else:
-            BookstoreProfile.objects.filter(user=details.user).update(BookStoreAddress=details.BookStoreAddress)
 
         if OwnerpNo!="":
             BookstoreProfile.objects.filter(user=details.user).update(OwnerpNo=OwnerpNo)
-        else:
-            BookstoreProfile.objects.filter(user=details.user).update(OwnerpNo=details.OwnerpNo)
         
         if OwnerName!="":
             BookstoreProfile.objects.filter(user=details.user).update(OwnerName=OwnerName)
-        else:
-            BookstoreProfile.objects.filter(user=details.user).update(OwnerName=details.OwnerName)
 
         return HttpResponseRedirect("/Bookstorehome")
     
@@ -355,31 +357,31 @@ def Libraryprofile(request):
         LibrarianName = request.POST['LibrarianName']
         email= request.POST['Email']
         LibrarianpNo = request.POST['LibrarianpNo']
+        imagefield = request.FILES["image"]
+        print(imagefield)
+
+        if imagefield!="":
+            print(imagefield)
+            if details.image!="":
+                os.remove(details.image.path)
+
+            details.image = imagefield
+            details.save()
         
         if LibraryName!="":
             LibraryProfile.objects.filter(user=details.user).update(LibraryName=LibraryName)
-        else:
-            LibraryProfile.objects.filter(user=details.user).update(LibraryName=details.LibraryName)
 
         if email!="":
             LibraryProfile.objects.filter(user=details.user).update(email=email)
-        else:
-            LibraryProfile.objects.filter(user=details.user).update(email=details.email)
 
         if LibraryAddress!="":
             LibraryProfile.objects.filter(user=details.user).update(LibraryAddress=LibraryAddress)
-        else:
-            LibraryProfile.objects.filter(user=details.user).update(LibraryAddress=details.LibraryAddress)
 
         if LibrarianpNo!="":
             LibraryProfile.objects.filter(user=details.user).update(LibrarianpNo=LibrarianpNo)
-        else:
-            LibraryProfile.objects.filter(user=details.user).update(LibrarianpNo=details.LibrarianpNo)
         
         if LibrarianName!="":
             LibraryProfile.objects.filter(user=details.user).update(LibrarianName=LibrarianName)
-        else:
-            LibraryProfile.objects.filter(user=details.user).update(LibrarianName=details.LibrarianName)
 
         return HttpResponseRedirect("/Libraryhome")
     
