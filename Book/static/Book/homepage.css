@@ -65,9 +65,8 @@
 
 }
 .footer{
-    display: flex;
-    /* text-align: center; */
-    background-color: violet;
+    text-align: center;
+    background-color: grey;
     height:500px;
 }
 .user button{
