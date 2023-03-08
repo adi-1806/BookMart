@@ -31,5 +31,11 @@ a{
     margin-top: 20px;
 }
 .footer{
+    display: grid;
+    justify-items: center;
+    background-color: grey;
     bottom: 0px;
+}
+.title {
+    text-decoration: underline;
 }

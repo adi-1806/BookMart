@@ -85,9 +85,13 @@ a{
     font-size:large;
 }
 .footer{
-    text-align: center;
+    display: grid;
+    justify-items: center;
     background-color: grey;
-    height:500px;
+    height:400px;
+}
+.title {
+    text-decoration: underline;
 }
 .purchase button{
     padding:10px;

@@ -51,7 +51,10 @@
 }
 .footer{
     display: grid;
-    text-align: center;
+    justify-items: center;
     background-color: grey;
     height:200px;
+}
+.title {
+    text-decoration: underline;
 }

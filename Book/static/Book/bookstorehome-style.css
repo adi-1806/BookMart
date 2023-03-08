@@ -49,7 +49,11 @@
    font-size: large;
 }
 .footer{
-    text-align: center;
+    display: grid;
+    justify-items: center;
     background-color: grey;
     height:200px;
+}
+.title {
+    text-decoration: underline;
 }
