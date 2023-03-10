@@ -176,32 +176,7 @@ def BooksUploaded(request):
     return render(request, "Book/Uploadedbooks.html")
 
 
-def AppointmentPage(request, pk):
-    details = Books_User.objects.get(id=pk)
-    owner = CustomerProfile.objects.filter(Name=details.book_owner)
-    s= datetime.datetime.now()
-    s=s.strftime("%Y-%m-%d %H:%M:%S")
-    books_time = details.time.strftime("%Y-%m-%d %H:%M:%S")
-    print(books_time)
-    print(s)
-    if books_time < s:
-        if request.method=='POST':
-            form = request.POST['Yes']
-            if form=="submit":
-                input_time = request.POST['time']
-                e= int(input_time)
-                p= datetime.datetime.now()
-                time_change = datetime.timedelta(hours=e)
-                new_time = p + time_change
-                details.time = new_time.strftime("%Y-%m-%d %H:%M:%S")
-                details.save()
-                print(details.time)
-    else:
-        return HttpResponse('book is booked')
-        
-    return render(request, "Book/Appointment.html",{
-        "details" : owner,
-    })
+
 
 #--------------------------------------------------------
 
@@ -315,6 +290,35 @@ def IndiBookstoreBooks(request, pk):
         })
     else:
         return HttpResponse('NO books present')
+    
+def AppointmentPage(request, pk):
+    details = Books_User.objects.get(id=pk)
+    owner = CustomerProfile.objects.filter(Name=details.book_owner)
+    s= datetime.datetime.now()
+    s=s.strftime("%Y-%m-%d %H:%M:%S")
+    books_time = details.time.strftime("%Y-%m-%d %H:%M:%S")
+    if books_time < s:
+        if request.method=='POST':
+            form = request.POST['Yes']
+            if form=="submit":
+                input_time = request.POST['time']
+                e= int(input_time)
+                p= datetime.datetime.now()
+                time_change = datetime.timedelta(hours=e)
+                new_time = p + time_change
+                details.time = new_time.strftime("%Y-%m-%d %H:%M:%S")
+                details.save()
+    else:
+        text = 'Some body has already booked this book. If that person not claimed, then you can claim at : ' + books_time
+        return render(request, "Book/Appointment.html",{
+        "details" : owner,
+        "text" : text
+    })
+
+        
+    return render(request, "Book/Appointment.html",{
+        "details" : owner
+    })
 
 #-----------------------------------
 
@@ -386,6 +390,35 @@ def Bookstoreprofile(request):
                     "details" : details
                   })
             
+def BookstoreAppointmentPage(request, pk):
+    details = Books_Store.objects.get(id=pk)
+    owner = BookstoreProfile.objects.filter(OwnerName=details.book_owner)
+    s= datetime.datetime.now()
+    s=s.strftime("%Y-%m-%d %H:%M:%S")
+    books_time = details.time.strftime("%Y-%m-%d %H:%M:%S")
+    if books_time < s:
+        if request.method=='POST':
+            form = request.POST['Yes']
+            if form=="submit":
+                input_time = request.POST['time']
+                e= int(input_time)
+                p= datetime.datetime.now()
+                time_change = datetime.timedelta(hours=e)
+                new_time = p + time_change
+                details.time = new_time.strftime("%Y-%m-%d %H:%M:%S")
+                details.save()
+    else:
+        text = 'Some body has already booked this book. If that person not claimed, then you can claim at : ' + books_time
+        return render(request, "Book/Appointment.html",{
+        "Bookstore" : owner,
+        "text" : text
+    })
+
+        
+    return render(request, "Book/Appointment.html",{
+        "Bookstore" : owner
+    })
+
 #---------------------------------------------------------------
 def LibraryLogin(request):
     if request.method== "POST":
@@ -458,3 +491,32 @@ def Libraryprofile(request):
     return render(request, "Book/Libraryprofile.html",{
                     "details" : details
                   })
+
+def LibraryAppointmentPage(request, pk):
+    details = Books_Library.objects.get(id=pk)
+    owner = LibraryProfile.objects.filter(LibrarianName=details.book_owner)
+    s= datetime.datetime.now()
+    s=s.strftime("%Y-%m-%d %H:%M:%S")
+    books_time = details.time.strftime("%Y-%m-%d %H:%M:%S")
+    if books_time < s:
+        if request.method=='POST':
+            form = request.POST['Yes']
+            if form=="submit":
+                input_time = request.POST['time']
+                e= int(input_time)
+                p= datetime.datetime.now()
+                time_change = datetime.timedelta(hours=e)
+                new_time = p + time_change
+                details.time = new_time.strftime("%Y-%m-%d %H:%M:%S")
+                details.save()
+    else:
+        text = 'Some body has already booked this book. If that person not claimed, then you can claim at : ' + books_time
+        return render(request, "Book/Appointment.html",{
+        "Librarydetails" : owner,
+        "text" : text
+    })
+
+        
+    return render(request, "Book/Appointment.html",{
+        "Librarydetails" : owner
+    })

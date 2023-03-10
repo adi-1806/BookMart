@@ -26,9 +26,11 @@ urlpatterns=[
     path("Librarylogin", views.LibraryLogin, name="librarylogin"),
     path("Libraryhome", views.LibraryHome, name="libraryhome"),
     path("Libraryprofile", views.Libraryprofile, name="libraryprofile"),
+    path("Libraryappointment/<str:pk>/",views.LibraryAppointmentPage, name="libraryappointment"),
 
     path("Bookstorelogin", views.BookstoreLogin, name="bookstorelogin"),
     path("Bookstorehome", views.BookstoreHome, name="bookstorehome"),
     path("Bookstoreprofile", views.Bookstoreprofile, name="bookstoreprofile"),
+    path("Bookstoreappointment/<str:pk>/",views.BookstoreAppointmentPage, name="bookstoreappointment"),
 
 ]

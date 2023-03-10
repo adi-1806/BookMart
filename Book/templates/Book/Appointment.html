@@ -1,6 +1,7 @@
 <body>
     <form action="" method="POST">
         {% csrf_token %}
+        
         <h1>Owner details:</h1>
         {% for book in details %}
         
@@ -9,10 +10,27 @@
             Address: {{book.Address}} <br>
 
         {% endfor %}
+        {% for book in Bookstore %}
+            Bookstore Name : {{book.BookStoreName}} <br>
+            OwnerName : {{book.OwnerName | title}} <br>
+            Phone Number : {{book.OwnerpNo}} <br>
+            Address : {{book.BookStoreAddress}} <br>
+            Email : {{book.email}}
+
+        {% endfor %}
+        {% for book in Librarydetails %}
+            Bookstore Name : {{book.LibraryName}} <br>
+            OwnerName : {{book.LibrarianName | title}} <br>
+            Phone Number : {{book.LibrarianpNo}} <br>
+            Address : {{book.LibraryAddress}} <br>
+            Email : {{book.email}}
+        {% endfor %} 
+        <br>
+        {{text}}
 
         <h1>Appointment Details:</h1>
         <p>You will pick up the book in next...?</p>
-        <select name="time">
+        <select name="time" >
             <option value="Select">Hours?</option>
             <option value="1">1 Hour</option>
             <option value="2">2 Hour</option>
