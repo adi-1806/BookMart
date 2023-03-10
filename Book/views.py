@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Library,User, Bookstore, Books_Library, Books_Store,Books_User, Customer, CustomerProfile, LibraryProfile, BookstoreProfile
 from django.contrib.auth.decorators import login_required
-
+import datetime
 
 # Create your views here
 
@@ -176,6 +176,33 @@ def BooksUploaded(request):
     return render(request, "Book/Uploadedbooks.html")
 
 
+def AppointmentPage(request, pk):
+    details = Books_User.objects.get(id=pk)
+    owner = CustomerProfile.objects.filter(Name=details.book_owner)
+    s= datetime.datetime.now()
+    s=s.strftime("%Y-%m-%d %H:%M:%S")
+    books_time = details.time.strftime("%Y-%m-%d %H:%M:%S")
+    print(books_time)
+    print(s)
+    if books_time < s:
+        if request.method=='POST':
+            form = request.POST['Yes']
+            if form=="submit":
+                input_time = request.POST['time']
+                e= int(input_time)
+                p= datetime.datetime.now()
+                time_change = datetime.timedelta(hours=e)
+                new_time = p + time_change
+                details.time = new_time.strftime("%Y-%m-%d %H:%M:%S")
+                details.save()
+                print(details.time)
+    else:
+        return HttpResponse('book is booked')
+        
+    return render(request, "Book/Appointment.html",{
+        "details" : owner,
+    })
+
 #--------------------------------------------------------
 
 def UserLogin(request):
@@ -259,7 +286,6 @@ def UserPurUser(request):
 
 def UserRentLib(request):
     books = LibraryProfile.objects.filter()
-    details = LibraryProfile.objects.get(LibraryName='warangal')
     return render(request, "Book/UserRentLib.html",{
         "books" : books
     })
@@ -272,7 +298,7 @@ def UserRentUser(request):
 
 def IndiLibraryBooks(request, pk):
     details = LibraryProfile.objects.get(id=pk)
-    books= Books_Library.objects.filter(book_owner =details.user)
+    books= Books_Library.objects.filter(book_owner =details.user , purpose = 'Rent')
     if books:
         return render(request, "Book/UserLibBooks.html",{
             "books" : books
@@ -282,7 +308,7 @@ def IndiLibraryBooks(request, pk):
     
 def IndiBookstoreBooks(request, pk):
     details = BookstoreProfile.objects.get(id=pk)
-    books= Books_Store.objects.filter(book_owner =details.user)
+    books= Books_Store.objects.filter(book_owner =details.user , purpose = 'Sale')
     if books:
         return render(request, "Book/UserBSBooks.html",{
             "books" : books

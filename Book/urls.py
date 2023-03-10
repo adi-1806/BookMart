@@ -8,6 +8,7 @@ urlpatterns=[
     path("logout",views.logoutUser, name="logout"),
     path("Bookupload/",views.BookUpload, name="bookupload"),
     path("Booksuploaded",views.BooksUploaded, name="booksuploaded"),
+    path("Appointment/<str:pk>/",views.AppointmentPage, name="appointment"),
 
 
     path("Userlogin", views.UserLogin, name="userlogin"),

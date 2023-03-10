@@ -1,0 +1,26 @@
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h1>Owner details:</h1>
+        {% for book in details %}
+        
+            Name: {{book.Name}} <br>
+            Phone Number: {{book.PhoneNo}} <br>
+            Address: {{book.Address}} <br>
+
+        {% endfor %}
+
+        <h1>Appointment Details:</h1>
+        <p>You will pick up the book in next...?</p>
+        <select name="time">
+            <option value="Select">Hours?</option>
+            <option value="1">1 Hour</option>
+            <option value="2">2 Hour</option>
+            <option value="3">3 Hour</option>
+            <option value="4">4 Hour</option>
+            <option value="5">5 Hour</option>
+        </select>
+        <input type="submit" name="Yes" value='submit' />
+
+    </form>
+</body>

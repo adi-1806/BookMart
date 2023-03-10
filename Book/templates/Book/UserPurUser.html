@@ -10,6 +10,9 @@
             {{books.publications}}
             {{books.price}}.Rs
             {{books.purpose}}
+            <button><a href="{% url 'appointment' books.id %}">
+                Appointment
+            </a></button>
             <br>
             <br>
         {% endfor %}

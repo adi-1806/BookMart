@@ -140,6 +140,7 @@ class Books_User(models.Model):
     purpose = models.CharField(max_length=20, null=True)
     image = models.FileField(upload_to="images", null=True)
     book_owner= models.CharField(max_length=100, null=True)
+    time = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
 
 
 class Books_Store(models.Model):
